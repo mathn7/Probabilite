@@ -1,5 +1,5 @@
 # Probabilite
-Les TPs de la 1ère année SN à INP-ENSEEIHT
+Les TPs de la 1ère année SN/INP-ENSEEIHT
 
 | **Documentation** | **Intégration continue** 
 |:-----------------:|:------------------------:

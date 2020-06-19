@@ -1,1 +1,1 @@
-#TP2 – Compression d’un signal
+# TP2 – Compression d’un signal

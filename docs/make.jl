@@ -16,7 +16,7 @@ makedocs(
     )
 
 deploydocs(
-    repo   = "github.com/mathn7/Probabilite.git"
+    repo   = "github.com/mathn7/Probabilite.git",
     branch = "gh-pages",  
     devbranch = "master",
 )

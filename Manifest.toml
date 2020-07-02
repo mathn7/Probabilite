@@ -39,6 +39,11 @@ git-tree-sha1 = "3663bfffede2ef41358b6fc2e1d8a6d50b3c3904"
 uuid = "6e34b625-4abd-537c-b88f-471c36dfa7a0"
 version = "1.0.6+2"
 
+[[CEnum]]
+git-tree-sha1 = "215a9aa4a1f23fbd05b92769fdd62559488d70e9"
+uuid = "fa961155-64e5-5f13-b03f-caf6b980ea82"
+version = "0.4.1"
+
 [[Cairo]]
 deps = ["Cairo_jll", "Colors", "Fontconfig_jll", "Glib_jll", "Graphics", "Libdl", "Pango_jll"]
 git-tree-sha1 = "f9db9e9814f71799e1b9c849055f0adae8bdc158"
@@ -85,6 +90,12 @@ version = "0.3.3+0"
 git-tree-sha1 = "52cb3ec90e8a8bea0e62e275ba577ad0f74821f7"
 uuid = "ed09eef8-17a6-5b46-8889-db040fac31e3"
 version = "0.3.2"
+
+[[Conda]]
+deps = ["JSON", "VersionParsing"]
+git-tree-sha1 = "7a58bb32ce5d85f8bf7559aa7c2842f9aecf52fc"
+uuid = "8f4d0f93-b110-5947-807f-2305c1781a2d"
+version = "1.4.1"
 
 [[CoordinateTransformations]]
 deps = ["LinearAlgebra", "Rotations", "StaticArrays"]
@@ -153,9 +164,9 @@ version = "0.4.0"
 
 [[Expat_jll]]
 deps = ["Libdl", "Pkg"]
-git-tree-sha1 = "fb53564d23aeaa2936ff26adbe17255296ef487c"
+git-tree-sha1 = "def36fdc72dc7a9953673cf5492588ef3d79139c"
 uuid = "2e619515-83b5-522b-bb60-26c02a35a201"
-version = "2.2.7+2"
+version = "2.2.7+3"
 
 [[FFTViews]]
 deps = ["CustomUnitRanges", "FFTW"]
@@ -215,9 +226,9 @@ version = "3.24.11+2"
 
 [[Gettext_jll]]
 deps = ["Libdl", "Libiconv_jll", "Pkg", "XML2_jll"]
-git-tree-sha1 = "1147180191fb5dcccd39bab776d50dc61c32fcbb"
+git-tree-sha1 = "731622006369631e1d0c180a61d2dd5fe9e4dfd4"
 uuid = "78b55507-aeef-58d4-861c-77aaff3498b1"
-version = "0.20.1+3"
+version = "0.20.1+4"
 
 [[Glib_jll]]
 deps = ["Gettext_jll", "Libdl", "Libffi_jll", "Libiconv_jll", "Libmount_jll", "PCRE_jll", "Pkg", "Zlib_jll"]
@@ -296,6 +307,24 @@ deps = ["CatIndices", "ColorVectorSpace", "ComputationalResources", "DataStructu
 git-tree-sha1 = "1587838842e1c35381c59cc52dbabca37bbc458d"
 uuid = "6a3955dd-da59-5b1f-98d4-e7296123deb5"
 version = "0.6.13"
+
+[[ImageIO]]
+deps = ["FileIO", "PNGFiles"]
+git-tree-sha1 = "ef9eb9238819c9d2a5b922ba128b29647147ecfd"
+uuid = "82e4d734-157c-48bb-816b-45c225c6df19"
+version = "0.2.0"
+
+[[ImageMagick]]
+deps = ["FileIO", "ImageCore", "ImageMagick_jll", "InteractiveUtils", "Libdl", "Pkg", "Random"]
+git-tree-sha1 = "318342a5099a9c952b4de087344a2db831458c87"
+uuid = "6218d12a-5da1-5696-b52f-db25d2ecc6d1"
+version = "1.1.5"
+
+[[ImageMagick_jll]]
+deps = ["JpegTurbo_jll", "Libdl", "Libtiff_jll", "Pkg", "Zlib_jll", "libpng_jll"]
+git-tree-sha1 = "1c0a2295cca535fabaf2029062912591e9b61987"
+uuid = "c73af94c-d91f-53ed-93a7-00f77d67a9d7"
+version = "6.9.10-12+3"
 
 [[ImageMetadata]]
 deps = ["AxisArrays", "ColorVectorSpace", "ImageAxes", "ImageCore", "IndirectArrays"]
@@ -389,6 +418,11 @@ git-tree-sha1 = "71119990371c93f027bee80547ee908ddfe7c5ca"
 uuid = "dd4b983a-f0e5-5f8d-a1b7-129d4a5fb1ac"
 version = "2.10.0+1"
 
+[[LaTeXStrings]]
+git-tree-sha1 = "de44b395389b84fd681394d4e8d39ef14e3a2ea8"
+uuid = "b964fa9f-0449-5b57-a5c2-d3ea65f4040f"
+version = "1.1.0"
+
 [[LibGit2]]
 deps = ["Printf"]
 uuid = "76f85450-5226-5b5a-8eaa-529ad045b433"
@@ -428,9 +462,9 @@ version = "1.36.0+1"
 
 [[Libiconv_jll]]
 deps = ["Libdl", "Pkg"]
-git-tree-sha1 = "18e9398dbdc297d6f31b2a8ba90c3d8d6a244b2f"
+git-tree-sha1 = "c9d4035d7481bcdff2babf5a55525a818ef8ed8f"
 uuid = "94ce4f54-9a6c-5748-9c1c-f9c7231a4531"
-version = "1.16.0+3"
+version = "1.16.0+5"
 
 [[Libmount_jll]]
 deps = ["Libdl", "Pkg"]
@@ -520,6 +554,12 @@ git-tree-sha1 = "2c860a32ae9c421b52b654448bd31a31f437449a"
 uuid = "2f80f16e-611a-54ab-bc61-aa92de5b98fc"
 version = "8.42.0+2"
 
+[[PNGFiles]]
+deps = ["CEnum", "ImageCore", "IndirectArrays", "OffsetArrays", "libpng_jll"]
+git-tree-sha1 = "72ad6e0a33aa52ff244cc0a79acc7d8d6d5b263d"
+uuid = "f57f5aa1-a3ce-4bc8-8ab9-96f992907883"
+version = "0.2.1"
+
 [[PaddedViews]]
 deps = ["OffsetArrays"]
 git-tree-sha1 = "100195a79b577d5747db98bf1732c3686285fa1e"
@@ -557,6 +597,18 @@ uuid = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
 [[Printf]]
 deps = ["Unicode"]
 uuid = "de0858da-6303-5e67-8744-51eddeeeb8d7"
+
+[[PyCall]]
+deps = ["Conda", "Dates", "Libdl", "LinearAlgebra", "MacroTools", "Serialization", "VersionParsing"]
+git-tree-sha1 = "3a3fdb9000d35958c9ba2323ca7c4958901f115d"
+uuid = "438e738f-606a-5dbb-bf0a-cddfbfd45ab0"
+version = "1.91.4"
+
+[[PyPlot]]
+deps = ["Colors", "LaTeXStrings", "PyCall", "Sockets", "Test", "VersionParsing"]
+git-tree-sha1 = "67dde2482fe1a72ef62ed93f8c239f947638e5a2"
+uuid = "d330b81b-6aea-500a-939a-2ce795aea3ee"
+version = "2.9.0"
 
 [[REPL]]
 deps = ["InteractiveUtils", "Markdown", "Sockets"]
@@ -684,6 +736,11 @@ version = "1.0.1"
 
 [[Unicode]]
 uuid = "4ec0a83e-493e-50e2-b9ac-8f72acf5a8f5"
+
+[[VersionParsing]]
+git-tree-sha1 = "80229be1f670524750d905f8fc8148e5a8c4537f"
+uuid = "81def892-9a0e-5fdd-b105-ffc91e053289"
+version = "1.2.0"
 
 [[Wayland_jll]]
 deps = ["Expat_jll", "Libdl", "Libffi_jll", "Pkg", "XML2_jll"]
@@ -831,9 +888,9 @@ version = "1.4.0+1"
 
 [[Zlib_jll]]
 deps = ["Libdl", "Pkg"]
-git-tree-sha1 = "64b39656c75e67f85b4ac2b336c54674a39f599d"
+git-tree-sha1 = "622d8b6dc0c7e8029f17127703de9819134d1b71"
 uuid = "83775a58-1f1d-513f-b197-d71354ab007a"
-version = "1.2.11+11"
+version = "1.2.11+14"
 
 [[Zstd_jll]]
 deps = ["Libdl", "Pkg"]

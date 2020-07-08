@@ -1,21 +1,20 @@
-clear
-close all
-taille_ecran = get(0,'ScreenSize')
-L = taille_ecran(3)
-H = taille_ecran(4)
+closeall()
+#taille_ecran = get(0,'ScreenSize')
+#L = taille_ecran(3)
+#H = taille_ecran(4)
 
 # Parametres :
-set(0,'RecursionLimit',1000)				# Pour eviter les erreurs a l'execution
+#set(0,'RecursionLimit',1000)				# Pour eviter les erreurs a l'execution
 alpha = pi/8						# Seuil sur l'orientation du gradient (en radians)
 cos_alpha = cos(alpha)
-seuil_norme = 2/sin(alpha)				# Seuil sur la norme du gradient (decoule d'une etude theorique)
+seuil_norme = 2 / sin(alpha)				# Seuil sur la norme du gradient (decoule d'une etude theorique)
 
 # Lecture de l'image :
 I = imread('Images/Piree.png')
 # I = imread('Images/chaises.png')
 # I = imread('Images/Morlaix.png')
 if size(I,3)==3
-	I = rgb2gray(I)
+	I = Gray.(I[:,:,1])
 end
 I = imresize(I,0.8)					# Permet de limiter l'effet de crenelage
 [nb_lignes,nb_colonnes] = size(I)
@@ -29,10 +28,10 @@ card_min = floor(card_max/20)				# Cardinal min d'un ensemble E
 figure('Name','Ensembles candidats','Position',[0,0,L,0.67*H])
 subplot(1,2,1)
 imagesc(I)
-axis equal
-axis off
-colormap gray
-hold on
+#axis equal
+#axis off
+#colormap gray
+#hold on
 
 # Gradient du niveau de gris (x vers la droite, y vers le bas) :
 I = double(I)

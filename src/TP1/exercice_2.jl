@@ -6,25 +6,30 @@ using Statistics
 include("vectorisation.jl")
 include("calcul_parametres.jl")
 
+
 #" Lecture de l'image automn et conversion en doubles"
 I_max = 255;
-I_min = 0;
+I_min = -I_max;
 Im = load("src/TP1/automn.tiff");
 Im  = Real.(convert(Array{Gray{Float64},2},Im));
 
 #Im = testimage("mandrill") #à décommenter pour utiliser une image interne à Julia
 
-#" Affichage de l'image :"
-ImageView.imshow(Im)
+# Calcul de l'image decorrelee :
+I_decorrelee = Im
+I_decorrelee[:,2:end] = Im[:,2:end]-Im[:,1:end-1]
 
-#"Affichage de l'histogramme de l'image :"
+#" Affichage de l'image decorrelee :"
+ImageView.imshow(I_decorrelee)
+
+#"Affichage de l'histogramme de l'image decorrelee :"
 title("Histogramme")
 xlabel("X")
 ylabel("Y")
-histogramme = PyPlot.plt.hist(Im[:],10);
+histogramme = PyPlot.plt.hist(I_decorrelee[:],10);
 
 # Calcul de vecteurs contenant les niveaux de gris de gauche (de droite) d'une paire de pixels
-(I_gauche,I_droite) = vectorisation(Im);
+(I_gauche,I_droite) = vectorisation(I_decorrelee);
 
 #" Affichage des paires de niveaux de gris sous la forme dun nuage de points :"
 
@@ -37,7 +42,7 @@ ylabel("Niveau de gris du pixel de droite")
 
 
 # Calcul des parametres de la droite de regression :
-(r,a,b) = calcul_parametres(I_gauche,I_droite);
+r,a,b = calcul_parametres(I_gauche,I_droite);
 @printf("Coefficient de correlation lineaire : %.4f\n",r);
 
 

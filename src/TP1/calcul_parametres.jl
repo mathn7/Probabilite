@@ -11,3 +11,4 @@ function calcul_parametres(X,Y)
 
     return r,a,b
 end
+

@@ -1,7 +1,11 @@
-using PyPlot
+using Plots
 using Printf
 using Statistics
+#using ImageView
+using Images
 #using TestImages , ImageMagick #à décommenter pour utiliser des images disponibles dans ImageMagic
+pyplot()
+pause(text) = (print(stdout, text); read(stdin, 1); nothing)
 
 include("vectorisation.jl")
 include("calcul_parametres.jl")
@@ -20,26 +24,22 @@ I_decorrelee = Im
 I_decorrelee[:,2:end] = Im[:,2:end]-Im[:,1:end-1]
 
 #" Affichage de l'image decorrelee :"
-ImageView.imshow(I_decorrelee)
+#ImageView.imshow(I_decorrelee)
 
 #"Affichage de l'histogramme de l'image decorrelee :"
-title("Histogramme")
-xlabel("X")
-ylabel("Y")
-histogramme = PyPlot.plt.hist(I_decorrelee[:],10);
+histogramme = Plots.histogram([I_min:I_max],I_decorrelee[:])
+plt = Plots.plot(histogramme,title="Histogramme",xlabel="X",ylabel="Y");
+display(plt)
+pause("tapez Entrée pour continuer \n")
 
 # Calcul de vecteurs contenant les niveaux de gris de gauche (de droite) d'une paire de pixels
 (I_gauche,I_droite) = vectorisation(I_decorrelee);
 
 #" Affichage des paires de niveaux de gris sous la forme dun nuage de points :"
 
-figure("Affichage des paires de niveaux de gris sous la forme dun nuage de points",figsize=(30,30));
-PyPlot.scatter(I_gauche,I_droite);
-
-title(" Affichage des paires de niveaux de gris sous la forme dun nuage de points ")
-xlabel("Niveau de gris du pixel de gauche")
-ylabel("Niveau de gris du pixel de droite")
-
+plt = Plots.scatter(I_gauche,I_droite,title=" Affichage des paires de niveaux de gris sous la forme dun nuage de points ",xlabel="Niveau de gris du pixel de gauche",ylabel="Niveau de gris du pixel de droite");
+display(plt)
+pause("tapez Entrée pour continuer \n")
 
 # Calcul des parametres de la droite de regression :
 r,a,b = calcul_parametres(I_gauche,I_droite);
@@ -49,5 +49,5 @@ r,a,b = calcul_parametres(I_gauche,I_droite);
 #" Affichage de la droite de regression (d'equation y = a*x+b) :"
 x = [i for i in I_min:I_max];
 y = a*x .+ b;
-PyPlot.scatter(x,y);
-
+plt = Plots.plot(x,y,color =:red);
+display(plt)

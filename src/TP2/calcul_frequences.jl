@@ -1,6 +1,6 @@
 function calcul_frequences(texte,alphabet)
 
-    frequences = zeros(size(alphabet))
+    frequences = zeros(length(alphabet))
     for i = 1:length(alphabet)
         #frequences[i] = sum(texte==alphabet[i]);	# Nombre d'occurrences de alphabet[i]
         for j in eachindex(texte)

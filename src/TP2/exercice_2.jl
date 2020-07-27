@@ -1,3 +1,7 @@
+""" script non fonctionnel (absence dans julia des fonctions huffmandict,..)"""
+
+
+
 # Codage de Huffman de l'image initiale :
 load exercice_1_TP1
 frequences = histogramme/sum(histogramme)

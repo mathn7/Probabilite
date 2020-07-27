@@ -5,6 +5,7 @@ include("selection.jl")
 include("partitionnement.jl")
 include("codage_arithmetique.jl")
 
+let
 # Definition d'un alphabet ASCII avec les lettres A..Z; a..z; les chiffres 1..9 et la ponctuation :
 taille_alphabet = 128
 codes_ASCII = collect(0:taille_alphabet-1);		# Vecteur [colonne] de codes ASCII
@@ -14,7 +15,7 @@ alphabet = String(UInt8.(codes_ASCII[:]));				# Vecteur de caracteres ASCII
 texte = "Taratatatsointsoin"
 
 # Affichage du texte :
-@sprintf("Texte : %s\n",texte)
+@printf("Texte : %s\n",texte)
 
 # Frequences d'apparition des lettres dans le texte :
 frequences = calcul_frequences(texte,alphabet)
@@ -34,24 +35,27 @@ while (floor(k*borne_inf)==floor(k*borne_sup))
 	k = 10*k;	
 end
 texte_encode = floor(k*borne_sup)/k
-@sprintf("Texte encode : %.15f\n",texte_encode)
+@printf("Texte encode : %.15f\n",texte_encode)
 
 # Decodage du texte encode :
-#texte_decode = ''
 texte_encode_courant = texte_encode ;
+texte_decode = ""
 
 for i = 1:length(texte)
-	c = findall((texte_encode_courant>bornes[1,:])&(texte_encode_courant<bornes[2,:]));	# Identification du caractere
-	texte_decode = [texte_decode selection_alphabet[c]];				# Concatenation du caractere
-	texte_encode_courant = (texte_encode_courant-bornes[1,c])/selection_frequences[c];	# Soustraction de la borne inferieure et division par la probabilite pour obtenir le caractere suivant
+	c = [x for x in findall(texte_encode_courant.>bornes[1,:]) if x in findall(texte_encode_courant.<bornes[2,:])];	# Identification du caractere
+	if length(c)>0
+		texte_decode = texte_decode*selection_alphabet[c];				# Concatenation du caractere
+		texte_encode_courant = (texte_encode_courant-bornes[1,c])/selection_frequences[c];	# Soustraction de la borne inferieure et division par la probabilite pour obtenir le caractere suivant
+	end
 end
-@sprintf("Texte decode : %s\n",texte_decode)
+@printf("Texte decode : %s\n",texte_decode)
 
 # Calcul du nombre de bits necessaires pour encoder la partie decimale :
 dec_texte_encode = texte_encode*k;					# Partie decimale
-nb_bits_codage_arithmetique = length(dec2bin(dec_texte_encode));	# Conversion de la partie decimale en binaire [dec2bin]
-@sprintf("Nombre de bits du codage arithmetique : %d\n",nb_bits_codage_arithmetique)
+nb_bits_codage_arithmetique = length(UInt8(dec_texte_encode));	# Conversion de la partie decimale en binaire [UInt8]
+@printf("Nombre de bits du codage arithmetique : %d\n",nb_bits_codage_arithmetique)
 
+end
 # Comparaison avec le codage de Huffman :
 
 #dico = huffmandict[num2cell(selection_alphabet),selection_frequences]

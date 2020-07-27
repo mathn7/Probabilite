@@ -1,6 +1,9 @@
 include("exercice_Matlab.jl")
 using Printf
 
+""" script non fonctionnel (absence dans julia des fonctions huffmandict,..)"""
+
+
 # Encodage du texte :
 alphabet_cell = num2cell(selection_alphabet);			# Format "cell" requis par la fonction huffmandict
 dico = huffmandict[alphabet_cell,selection_frequences];		# dico(j,2) = code binaire du caractere ASCII dico(j,1)

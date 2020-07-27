@@ -4,6 +4,8 @@ using Statistics
 #using ImageView
 using Images
 #using TestImages , ImageMagick #à décommenter pour utiliser des images disponibles dans ImageMagic
+
+#utilisation du background pyplot
 pyplot()
 pause(text) = (print(stdout, text); read(stdin, 1); nothing)
 
@@ -21,6 +23,11 @@ Im  = Real.(convert(Array{Gray{Float64},2},Im));
 
 #" Affichage de l'image :"
 #ImageView.imshow(Im)
+im = RGB.(Im)
+plt = Plots.plot(im);
+display(plt)
+pause("tapez Entrée pour continuer \n")
+
 
 #"Affichage de l'histogramme de l'image :"
 histogramme = Plots.histogram([I_min:I_max],Im[:])

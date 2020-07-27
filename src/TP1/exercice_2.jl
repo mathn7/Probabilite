@@ -4,6 +4,8 @@ using Statistics
 #using ImageView
 using Images
 #using TestImages , ImageMagick #à décommenter pour utiliser des images disponibles dans ImageMagic
+
+#utilisation du background pyplot
 pyplot()
 pause(text) = (print(stdout, text); read(stdin, 1); nothing)
 
@@ -25,6 +27,10 @@ I_decorrelee[:,2:end] = Im[:,2:end]-Im[:,1:end-1]
 
 #" Affichage de l'image decorrelee :"
 #ImageView.imshow(I_decorrelee)
+im = RGB.(I_decorrelee)
+plt = Plots.plot(im);
+display(plt)
+pause("tapez Entrée pour continuer \n")
 
 #"Affichage de l'histogramme de l'image decorrelee :"
 histogramme = Plots.histogram([I_min:I_max],I_decorrelee[:])

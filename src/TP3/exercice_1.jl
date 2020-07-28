@@ -1,13 +1,10 @@
-closeall()
-#taille_ecran = get(0,'ScreenSize')
-#L = taille_ecran(3)
-#H = taille_ecran(4)
+using Plots
 
 # Parametres :
 #set(0,'RecursionLimit',1000)				# Pour eviter les erreurs a l'execution
 alpha = pi/8						# Seuil sur l'orientation du gradient (en radians)
 cos_alpha = cos(alpha)
-seuil_norme = 2 / sin(alpha)				# Seuil sur la norme du gradient (decoule d'une etude theorique)
+seuil_norme = 2/sin(alpha)				# Seuil sur la norme du gradient (decoule d'une etude theorique)
 
 # Lecture de l'image :
 I = imread('Images/Piree.png')

@@ -1,4 +1,8 @@
 using Plots
+using Images
+
+pyplot()
+pause(text) = (print(stdout, text); read(stdin, 1); nothing)
 
 # Parametres :
 #set(0,'RecursionLimit',1000)				# Pour eviter les erreurs a l'execution
@@ -7,14 +11,14 @@ cos_alpha = cos(alpha)
 seuil_norme = 2/sin(alpha)				# Seuil sur la norme du gradient (decoule d'une etude theorique)
 
 # Lecture de l'image :
-I = imread('Images/Piree.png')
-# I = imread('Images/chaises.png')
-# I = imread('Images/Morlaix.png')
+I = load("src/TP3/Images/Piree.png")
+# I = load("src/TP3/Images/chaises.png")
+# I = load("src/TP3/Images/Morlaix.png")
 if size(I,3)==3
 	I = Gray.(I[:,:,1])
 end
-I = imresize(I,0.8)					# Permet de limiter l'effet de crenelage
-[nb_lignes,nb_colonnes] = size(I)
+#I = imresize(I,0.8)					# Permet de limiter l'effet de crenelage
+nb_lignes,nb_colonnes = size(I)
 
 # Parametres :
 diagonale = floor(sqrt(nb_lignes^2+nb_colonnes^2))
@@ -22,13 +26,8 @@ card_max = floor(diagonale/2)				# Cardinal max d'un ensemble E
 card_min = floor(card_max/20)				# Cardinal min d'un ensemble E
 
 # Affichage de l'image :
-figure('Name','Ensembles candidats','Position',[0,0,L,0.67*H])
-subplot(1,2,1)
-imagesc(I)
-#axis equal
-#axis off
-#colormap gray
-#hold on
+plt = Plots.plot(layout=(2,1),title="Ensembles candidat")
+Plots.plt!(plt[1],I,label="L'image")
 
 # Gradient du niveau de gris (x vers la droite, y vers le bas) :
 I = double(I)

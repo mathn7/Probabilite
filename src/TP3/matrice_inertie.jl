@@ -16,8 +16,8 @@ function matrice_inertie(E_x,E_y,G_norme_E)
     M_11 = sum(poids.*E_x_centre.^2)
     M_12 = sum(poids.*E_x_centre.*E_y_centre)
     M_22 = sum(poids.*E_y_centre.^2)
-    M = [M_11 M_12 , M_12 M_22]
+    M = [M_11 M_12 ; M_12 M_22]
 
-    return [C_x,C_y,M]
+    return C_x,C_y,M
 
 end
